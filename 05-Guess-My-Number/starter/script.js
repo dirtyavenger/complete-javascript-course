@@ -10,6 +10,7 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector('.message').textContent = 'No value!';
   } else if (guess === numberToBeGuessed) {
     document.querySelector('.message').textContent = 'You got it right!';
+    document.querySelector('#checkBtn').style.visibility = 'hidden';
     if (
       Number(document.querySelector('.score').textContent) >
       Number(document.querySelector('.highscore').textContent)
@@ -26,7 +27,9 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.message').textContent = 'Too low!';
     }
   }
+
   if (score === 0) {
+    document.querySelector('body').style.backgroundColor = '#666';
     alert(`You lost. The number was ${numberToBeGuessed}. Try again!`);
     reset();
   }
@@ -38,7 +41,10 @@ document.querySelector('.again').addEventListener('click', function () {
 
 function reset() {
   score = 20;
+  document.querySelector('.message').textContent = 'Start guessing...';
+  document.querySelector('body').style.backgroundColor = '#222';
   document.querySelector('.score').textContent = score;
+  document.querySelector('#checkBtn').style.visibility = 'visible';
   document.querySelector('.guess').value = '';
   numberToBeGuessed = Math.trunc(Math.random() * 20) + 1;
 }
