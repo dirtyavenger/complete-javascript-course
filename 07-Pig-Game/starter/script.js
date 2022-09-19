@@ -62,9 +62,7 @@ function endTurn() {
   }
 
   sections.forEach(function (section, index) {
-    section.classList.contains('player--active')
-      ? section.classList.remove('player--active')
-      : section.classList.add('player--active');
+    section.classList.toggle('player--active');
   });
   initialzeTurn();
   if (score1 >= 100 || score2 >= 100) {
