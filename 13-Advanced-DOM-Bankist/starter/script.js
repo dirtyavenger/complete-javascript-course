@@ -7,6 +7,21 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const nav = document.querySelector('.nav__links');
+const learnMore = document.querySelector('.btn--scroll-to');
+
+learnMore.addEventListener('click', function (e) {
+  document.querySelector('#section--1').scrollIntoView({ behavior: 'smooth' });
+});
+
+nav.addEventListener('click', function (e) {
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    e.preventDefault();
+    console.log(id);
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
 
 const openModal = function () {
   modal.classList.remove('hidden');
@@ -30,6 +45,7 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+<<<<<<< HEAD
 const message = document.createElement('div');
 message.classList.add('cookie-message');
 message.innerHTML =
@@ -57,3 +73,8 @@ function reverseLetters(chars) {
   return chars.sort();
 }
 console.log(array);
+=======
+const kokot = oc => {
+  return oc;
+};
+>>>>>>> 7cdd66e6f52551c48a07371a36902bec4693156b
