@@ -614,7 +614,7 @@ for (const [i, el] of menu.entries()) {
 */
 
 ///////////////////////////////////////
-// Coding Challenge #1
+// mellenge #1
 
 /* 
 We're building a football betting app (soccer for my American friends 😅)!
