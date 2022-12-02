@@ -74,3 +74,127 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+let currentAccount;
+//Event Handler pre login button
+btnLogin.addEventListener('click', e => {
+  currentAccount = accounts.find(
+    acc => acc.username == inputLoginUsername.value
+  );
+  console.log(currentAccount);
+  e.preventDefault();
+  if (Number(inputLoginPin.value) === currentAccount?.pin) {
+    console.log('Login successful');
+    containerApp.style.opacity = 100;
+    displayMovements(currentAccount);
+    displaySummaries(currentAccount);
+    displayMainInfo(currentAccount);
+  } else {
+    console.log('Login failed');
+  }
+});
+
+//Event Handler pre sort button
+btnSort.addEventListener('click', e => {
+  console.log('bezi');
+  const sortedMovements = [...currentAccount.movements].sort(
+    (first, second) => first - second
+  );
+  console.log(sortedMovements);
+  displayMovements(sortedMovements);
+});
+
+//Funkcia na kalculaciu username
+const createUsernames = function () {
+  accounts.forEach(acc => {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+
+  console.log(accounts);
+};
+
+// Funkcia na naplnenie zoznamu obratov
+const displayMovements = function (acc) {
+  let html = '';
+
+  acc.movements.map(movement => {
+    let typeOfMovement =
+      typeof movement === 'number' && movement > 0 ? 'deposit' : 'withdrawal';
+    html += `<div class="movements__row">
+    <div class="movements__type movements__type--${typeOfMovement}">8 ${typeOfMovement}</div>
+    <div>${}</div>
+    <div class="movements__value">${movement}€</div>
+  </div>`;
+  });
+  containerMovements.insertAdjacentHTML('afterbegin', html);
+};
+
+// Volanie funckie na vytvorenie usernames
+createUsernames();
+//Funkcia na naplnenie aktualneho datumu a krstneho mena klienta
+const displayMainInfo = function (acc) {
+  labelDate.textContent = new Date().toLocaleDateString('sk-SK');
+  labelWelcome.textContent = `Welcome back ${acc.owner.split(' ')[0]}`;
+};
+
+// Funkcia na naplnenie sumarizacnych policok
+const displaySummaries = function (acc) {
+  labelBalance.textContent = acc.movements.reduce(
+    (total, movement) => (total += movement),
+    0
+  );
+  labelSumIn.textContent = acc.movements
+    .filter(movement => movement > 0)
+    .reduce((total, movement) => (total += movement), 0);
+  labelSumOut.textContent = acc.movements
+    .filter(movement => movement < 0)
+    .reduce((total, movement) => (total -= movement), 0);
+};
+
+const allMovementsSum = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, number) => acc + number, 0);
+
+console.log(allMovementsSum);
+
+const allDepositsSum = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov > 0)
+  .reduce((acc, number) => acc + number, 0);
+
+console.log(allDepositsSum);
+const allWithdrawalsSum = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov < 0)
+  .reduce((acc, number) => acc + number, 0);
+
+console.log(allWithdrawalsSum);
+
+const numDeposits1000 = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov >= 1000)
+  .reduce((acc, number) => ++acc, 0);
+
+console.log(numDeposits1000);
+
+const numDeposits1000_2 = accounts
+  .flatMap(acc => acc.movements)
+  .filter(mov => mov >= 1000).length;
+
+console.log(numDeposits1000_2);
+
+const { deposits, withdrawals } = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (accumulator, mov) => {
+      mov > 0
+        ? (accumulator.deposits += mov)
+        : (accumulator.withdrawals += mov);
+      return accumulator;
+    },
+    { deposits: 0, withdrawals: 0 }
+  );
+console.log(deposits, withdrawals);
