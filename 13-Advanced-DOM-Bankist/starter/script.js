@@ -9,6 +9,9 @@ const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const nav = document.querySelector('.nav__links');
 const learnMore = document.querySelector('.btn--scroll-to');
+const tabButtonsContainer = document.querySelector(
+  '.operations__tab-container'
+);
 
 learnMore.addEventListener('click', function (e) {
   document.querySelector('#section--1').scrollIntoView({ behavior: 'smooth' });
@@ -48,3 +51,40 @@ document.addEventListener('keydown', function (e) {
 const kokot = oc => {
   return oc;
 };
+
+tabButtonsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+  if (!clicked) return;
+  this.querySelectorAll('.operations__tab').forEach(el =>
+    el.classList.remove('operations__tab--active')
+  );
+
+  clicked.classList.add('operations__tab--active');
+
+  const tabs = clicked.closest('.operations').children;
+
+  [...tabs].forEach(el => el.classList.remove('operations__content--active'));
+
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
+
+const mouseOver = function (e) {
+  if (e.target.classList.contains('nav__link')) {
+    e.target
+      .closest('.nav')
+      .querySelectorAll('.nav__link')
+      .forEach(el => {
+        console.log(el.textContent);
+        if (el != e.target) {
+          el.style.opacity = this;
+        }
+      });
+    e.target.closest('.nav').querySelector('img').style.opacity = this;
+  }
+};
+
+nav.addEventListener('mouseover', mouseOver.bind(0.5));
+
+nav.addEventListener('mouseout', mouseOver.bind(1));
