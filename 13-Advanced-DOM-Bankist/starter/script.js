@@ -9,6 +9,9 @@ const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const nav = document.querySelector('.nav__links');
 const learnMore = document.querySelector('.btn--scroll-to');
+const tabButtonsContainer = document.querySelector(
+  '.operations__tab-container'
+);
 
 learnMore.addEventListener('click', function (e) {
   document.querySelector('#section--1').scrollIntoView({ behavior: 'smooth' });
