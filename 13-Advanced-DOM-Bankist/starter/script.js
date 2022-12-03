@@ -118,8 +118,8 @@ nav.addEventListener('mouseover', mouseOver.bind(0.5));
 nav.addEventListener('mouseout', mouseOver.bind(1));
 
 window.addEventListener('scroll', function (e) {
-  this.window.scrollY >
-  parseInt(this.document.querySelector('.header').style.bottom)
+  console.log(document.querySelector('.header').offsetHeight);
+  window.scrollY > document.querySelector('.header').offsetHeight
     ? nav.closest('.nav').classList.add('sticky')
     : nav.closest('.nav').classList.remove('sticky');
 });
