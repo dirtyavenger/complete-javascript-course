@@ -45,36 +45,6 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-<<<<<<< HEAD
-const message = document.createElement('div');
-message.classList.add('cookie-message');
-message.innerHTML =
-  'We use cookied for improved functionality and analytics. <button class="btn btn--close-cookie">Got it!</button>';
-const header = document.querySelector('.header');
-header.prepend(message);
-const button = message.lastElementChild;
-console.log(button);
-button.addEventListener('click', function () {
-  message.remove();
-  console.log('kokot');
-});
-
-/* const buttons = document.getElementsByTagName('button');
-console.log(buttons);
-buttons.forEach(button => {
-  console.log('button');
-  addEventListener('click', () => console.log('Button pressed'));
-}); */
-
-const numbers = [1, 2, 3, 4, 5, 6];
-const chars = ['a', 'b', 'c'];
-let array = reverseLetters(chars);
-function reverseLetters(chars) {
-  return chars.sort();
-}
-console.log(array);
-=======
 const kokot = oc => {
   return oc;
 };
->>>>>>> 7cdd66e6f52551c48a07371a36902bec4693156b
