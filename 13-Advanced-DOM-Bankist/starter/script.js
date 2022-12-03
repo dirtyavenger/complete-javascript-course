@@ -48,7 +48,6 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-<<<<<<< HEAD
 const message = document.createElement('div');
 message.classList.add('cookie-message');
 message.innerHTML =
@@ -76,11 +75,10 @@ function reverseLetters(chars) {
   return chars.sort();
 }
 console.log(array);
-=======
+
 const kokot = oc => {
   return oc;
 };
-<<<<<<< HEAD
 
 tabButtonsContainer.addEventListener('click', function (e) {
   const clicked = e.target.closest('.operations__tab');
@@ -118,6 +116,10 @@ const mouseOver = function (e) {
 nav.addEventListener('mouseover', mouseOver.bind(0.5));
 
 nav.addEventListener('mouseout', mouseOver.bind(1));
-=======
->>>>>>> 7cdd66e6f52551c48a07371a36902bec4693156b
->>>>>>> e7510288ff4e857611f535900ec4bb65e0f60bd3
+
+window.addEventListener('scroll', function (e) {
+  this.window.scrollY >
+  parseInt(this.document.querySelector('.header').style.bottom)
+    ? nav.closest('.nav').classList.add('sticky')
+    : nav.closest('.nav').classList.remove('sticky');
+});
