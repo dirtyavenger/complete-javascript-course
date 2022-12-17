@@ -1,6 +1,6 @@
 'use strict';
 
-const Car = function (speed, make) {
+/* const Car = function (speed, make) {
   this.speed = speed;
   this.brand = make;
 };
@@ -34,22 +34,22 @@ console.log(Car.prototype.isPrototypeOf(BMW));
 console.log(Object.prototype.isPrototypeOf(BMW));
 console.dir(BMW.__proto__);
 
-const Ev = function (speed, make, bateryCharge) {
-  this.bateryCharge = bateryCharge;
+const Ev = function (speed, make, #bateryCharge) {
+  this.#bateryCharge = #bateryCharge;
   Car.call(this, speed, make);
 };
 Ev.prototype = Object.create(Car.prototype);
 Object.assign(Ev.prototype, {
   chargeBattery: function (chargeTo) {
-    if (this.bateryCharge < chargeTo) {
-      this.bateryCharge = chargeTo <= 100 ? chargeTo : 100;
+    if (this.#bateryCharge < chargeTo) {
+      this.#bateryCharge = chargeTo <= 100 ? chargeTo : 100;
     }
   },
   accelerate: function () {
     this.speed += 10;
-    this.bateryCharge -= 1;
+    this.#bateryCharge -= 1;
     console.log(
-      `${this.brand} is driving at ${this.speed} km/h and the batery is at ${this.bateryCharge}`
+      `${this.brand} is driving at ${this.speed} km/h and the batery is at ${this.#bateryCharge}`
     );
   },
 });
@@ -58,8 +58,8 @@ const Tesla = new Ev(120, 'Tesla', 50);
 console.dir(Tesla.__proto__);
 console.log(Ev.prototype.isPrototypeOf(Tesla));
 console.log(Car.prototype.isPrototypeOf(Tesla));
-console.log(Object.prototype.isPrototypeOf(Tesla));
-/* class CarCL {
+console.log(Object.prototype.isPrototypeOf(Tesla)); */
+class CarCL {
   constructor(make, speed) {
     (this.make = make), (this._speed = speed);
   }
@@ -71,6 +71,7 @@ console.log(Object.prototype.isPrototypeOf(Tesla));
   brake() {
     this._speed -= 5;
     console.log(`${this.make} is going at ${this._speed}`);
+    return this;
   }
   get speedUS() {
     return this._speed / 1.6;
@@ -81,12 +82,42 @@ console.log(Object.prototype.isPrototypeOf(Tesla));
   }
 }
 
-const bmw = new CarCL('BMW', 120);
+/* const bmw = new CarCL('BMW', 120);
 bmw.accelerate();
 bmw.accelerate();
 bmw.accelerate();
 bmw.accelerate();
 console.log(bmw.speedUS);
 bmw.speedUS = 50;
-bmw.brake();
- */
+bmw.brake(); */
+
+class EvCl extends CarCL {
+  #bateryCharge;
+  constructor(make, speed, bateryCharge) {
+    super(make, speed);
+    this.#bateryCharge = bateryCharge;
+  }
+  chargeBattery(chargeTo) {
+    if (this.#bateryCharge < chargeTo) {
+      this.#bateryCharge = chargeTo <= 100 ? chargeTo : 100;
+      return this;
+    }
+  }
+  accelerate() {
+    this._speed += 10;
+    this.#bateryCharge -= 1;
+    console.log(
+      `${this.make} is driving at ${this._speed} km/h and the batery is at ${
+        this.#bateryCharge
+      }`
+    );
+    this.#madafaka();
+    return this;
+  }
+  #madafaka() {
+    console.log('This method cannot be called from outside');
+  }
+}
+
+const tesla = new EvCl('Tesla', 120, 50);
+console.dir(tesla.__proto__);
