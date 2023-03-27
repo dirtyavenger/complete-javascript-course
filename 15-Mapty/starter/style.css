@@ -66,6 +66,14 @@ a:visited {
   width: 0;
 }
 
+.workout--highlight {
+  animation: bg 2s ease-in;
+  -webkit-animation: bg 2s ease-in;
+  -moz-animation: bg 2s ease-in;
+  -ms-animation: bg 2s ease-in;
+  -o-animation: bg 2s ease-in;
+}
+
 .workout {
   background-color: var(--color-dark--2);
   border-radius: 5px;
@@ -217,4 +225,64 @@ a:visited {
 }
 .cycling-popup .leaflet-popup-content-wrapper {
   border-left: 5px solid var(--color-brand--1);
+}
+
+@-webkit-keyframes bg {
+  0% {
+    background: rgba(0, 196, 106, 1);
+  }
+  20% {
+    background: rgba(0, 196, 106, 0.8);
+  }
+  50% 70% {
+    background: rgba(0, 196, 106, 0.5);
+  }
+  100% {
+    background: rgba(66, 72, 77, 1);
+  }
+}
+
+@-moz-keyframes bg {
+  0% {
+    background: rgba(0, 196, 106, 1);
+  }
+  20% {
+    background: rgba(0, 196, 106, 0.8);
+  }
+  50% 70% {
+    background: rgba(0, 196, 106, 0.5);
+  }
+  100% {
+    background: rgba(66, 72, 77, 1);
+  }
+}
+
+@-ms-keyframes bg {
+  0% {
+    background: rgba(0, 196, 106, 1);
+  }
+  20% {
+    background: rgba(0, 196, 106, 0.8);
+  }
+  50% 70% {
+    background: rgba(0, 196, 106, 0.5);
+  }
+  100% {
+    background: rgba(66, 72, 77, 1);
+  }
+}
+
+@-o-keyframes bg {
+  0% {
+    background: rgba(0, 196, 106, 1);
+  }
+  20% {
+    background: rgba(0, 196, 106, 0.8);
+  }
+  50% 70% {
+    background: rgba(0, 196, 106, 0.5);
+  }
+  100% {
+    background: rgba(66, 72, 77, 1);
+  }
 }
